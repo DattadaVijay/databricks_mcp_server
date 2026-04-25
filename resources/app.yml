@@ -10,6 +10,13 @@ resources:
         command:
           - "python"
           - "app.py"
+        env:
+        - name: DATABRICKS_HOST
+          value: "https://dbc-e3761da8-7d95.cloud.databricks.com"
+        - name: DATABRICKS_HTTP_PATH
+          value: "{{secrets/agents_scope/http_path}}"
+        - name: DATABRICKS_TOKEN
+          value: "{{secrets/agents_scope/databricks_token}}"
 
       permissions:
         - user_name: ${workspace.current_user.userName}
