@@ -1,0 +1,24 @@
+
+bundle:
+  name: mcp_databricks
+  uuid: 0f001416-a55f-4cb9-95c6-6b8fb9306851
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-e3761da8-7d95.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-e3761da8-7d95.cloud.databricks.com
+      root_path: /Workspace/Users/dattada.vijay@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: dattada.vijay@gmail.com
+        level: CAN_MANAGE
