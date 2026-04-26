@@ -1,6 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from databricks import sql
 import os
+import uvicorn
 
 # ── Connection ────────────────────────────────────────────────────
 def get_connection():
@@ -347,8 +348,13 @@ def get_table_lineage(job_id: str) -> str:
 
 # ── Run ───────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    mcp.run(
-        transport="streamable-http",
+    port = int(os.environ.get("PORT", 8000))
+    
+    # Get the ASGI app from FastMCP
+    asgi_app = mcp.get_asgi_app()
+    
+    uvicorn.run(
+        asgi_app,
         host="0.0.0.0",
-        port=int(os.environ.get("PORT", 8000))
+        port=port
     )

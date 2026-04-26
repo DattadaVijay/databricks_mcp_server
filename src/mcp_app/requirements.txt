@@ -1,3 +1,4 @@
-mcp
+mcp[cli]
 fastmcp
 databricks-sql-connector
+uvicorn
