@@ -17,7 +17,7 @@ def run_query(query: str) -> list:
             return cursor.fetchall()
 
 # ── MCP server ────────────────────────────────────────────────────
-mcp = FastMCP("Databricks Governance")
+mcp = FastMCP("Databricks Governance", stateless_http=True)
 
 # ── Tool 1 — get_job_id ───────────────────────────────────────────
 @mcp.tool()
