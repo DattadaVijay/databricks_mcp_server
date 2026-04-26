@@ -1,2 +1,3 @@
 mcp
 fastmcp
+databricks-sql-connector
