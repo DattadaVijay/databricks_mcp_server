@@ -17,7 +17,7 @@ def run_query(query: str) -> list:
             return cursor.fetchall()
 
 # ── MCP server ────────────────────────────────────────────────────
-mcp = FastMCP("Databricks Governance", stateless_http=True)
+mcp = FastMCP("Databricks Governance")
 
 # ── Tool 1 — get_job_id ───────────────────────────────────────────
 @mcp.tool()
@@ -347,9 +347,10 @@ def get_table_lineage(job_id: str) -> str:
 
 # ── Run ───────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8080))
     mcp.run(
         transport="streamable-http",
         host="0.0.0.0",
-        port=port
+        port=port,
+        stateless_http=True
     )
